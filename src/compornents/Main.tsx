@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { List } from "./List";
+import React, { useState } from "react";
+import { ToDoList } from "./List";
+import { TextField, Button, Container } from "@mui/material";
 
 export type todoList = {
   id: number;
@@ -35,19 +36,20 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
+    <Container>
+      <TextField
+        variant="outlined"
         value={add}
         onChange={changeTextHandler}
         onFocus={onFocusHandler}
         onBlur={onBlurHandler}
+        fullWidth
       />
-      <button type="button" onClick={pushHandler}>
+      <Button variant="contained" color="primary" onClick={pushHandler} sx={{ width: "100%", maxWidth: "1400px" }}>
         追加
-      </button>
-      <List todos={todo} />
-    </div>
+      </Button>
+      <ToDoList todos={todo} />
+    </Container>
   );
 };
 

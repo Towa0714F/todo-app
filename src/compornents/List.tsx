@@ -1,15 +1,24 @@
 import { todoList } from "./Main";
+import { List, ListItem, ListItemText, Button } from "@mui/material";
 
 type TaskListProps = {
   todos: todoList[];
 };
 
-export const List: React.FC<TaskListProps> = (props) => {
+export const ToDoList: React.FC<TaskListProps> = (props) => {
+  const handleItemClick = (text: string) => {
+    alert(`${text}`);
+  };
+
   return (
-    <ul>
-      {props.todos.map((todo) => {
-        return <li key={todo.id}>{todo.text}</li>;
-      })}
-    </ul>
+    <List>
+      {props.todos.map((todo) => (
+        <ListItem key={todo.id} disablePadding>
+          <Button onClick={() => handleItemClick(todo.text)}>
+            <ListItemText primaryTypographyProps={{ style: { color: "black" } }} primary={todo.text} />
+          </Button>
+        </ListItem>
+      ))}
+    </List>
   );
 };
